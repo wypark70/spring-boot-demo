@@ -49,7 +49,7 @@ public class HideUserGradeResponseWrapper extends HttpServletResponseWrapper {
 
         @Override
         public void setWriteListener(WriteListener writeListener) {
-
+          // empty
         }
       };
     }
@@ -90,7 +90,6 @@ public class HideUserGradeResponseWrapper extends HttpServletResponseWrapper {
   }
 
   public String getCaptureAsString() throws IOException {
-    System.out.println(getCharacterEncoding());
     return new String(getCaptureAsBytes(), getCharacterEncoding());
   }
 
