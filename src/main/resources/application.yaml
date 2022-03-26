@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: Demo Service for hide user grade
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
