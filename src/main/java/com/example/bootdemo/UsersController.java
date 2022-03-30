@@ -3,28 +3,23 @@ package com.example.bootdemo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
 public class UsersController {
   @GetMapping(value = "/users/100")
-  public Map<String, Object> users100() {
-    Map<String, Object> returnMap = new HashMap<>();
-    returnMap.put("id", 100);
-    returnMap.put("name", "박우용");
-    returnMap.put("gradeName", "사장");
-    returnMap.put("epid", "34234324234");
-    return returnMap;
+  public User users100() {
+    return User.builder()
+        .name("박우용")
+        .gradeCode("C001")
+        .gradeName("현장관리자")
+        .build();
   }
 
   @GetMapping(value = "/users/200")
-  public Map<String, Object> users200() {
-    Map<String, Object> returnMap = new HashMap<>();
-    returnMap.put("id", 200);
-    returnMap.put("name", "박은용");
-    returnMap.put("gradeName", "회장");
-    returnMap.put("epid", "34234324000");
-    return returnMap;
+  public User users200() {
+    return User.builder()
+        .name("박은용")
+        .gradeCode("C002")
+        .gradeName("현장소장")
+        .build();
   }
 }

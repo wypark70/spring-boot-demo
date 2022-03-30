@@ -14,11 +14,11 @@ public class HideUserGradeFilter implements Filter {
 
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
-    HideUserGradeResponseWrapper capturingResponseWrapper = new HideUserGradeResponseWrapper((HttpServletResponse) response);
-    filterChain.doFilter(request, capturingResponseWrapper);
+    HideUserGradeResponseWrapper hideUserGradeResponseWrapper = getHideUserGradeResponseWrapper(response);
+    filterChain.doFilter(request, hideUserGradeResponseWrapper);
     log.info("contentType: {}", response.getContentType());
     if (response.getContentType() != null && response.getContentType().contains(MediaType.APPLICATION_JSON.toString())) {
-      String content = capturingResponseWrapper.getCaptureAsString();
+      String content = hideUserGradeResponseWrapper.getContentAsString();
       log.info("content: {}", content);
       String replacedContent = replaceGrade(content);
       log.info("replacedContent: {}", replacedContent);
@@ -26,8 +26,12 @@ public class HideUserGradeFilter implements Filter {
     }
   }
 
+  protected HideUserGradeResponseWrapper getHideUserGradeResponseWrapper(ServletResponse response) {
+    return new HideUserGradeResponseWrapper((HttpServletResponse) response);
+  }
+
   private String replaceGrade(String content) {
-    Pattern replacePattern = Pattern.compile("\"(epid|gradeName)\":\"(.*?)\"");
+    Pattern replacePattern = Pattern.compile("\"(gradeCode|gradeName)\":\"(.*?)\"");
     Matcher matcher = replacePattern.matcher(content);
     String replacedContent = String.copyValueOf(content.toCharArray());
     while (matcher.find()) {

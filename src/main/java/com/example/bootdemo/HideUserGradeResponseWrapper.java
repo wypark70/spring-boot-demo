@@ -79,7 +79,7 @@ public class HideUserGradeResponseWrapper extends HttpServletResponseWrapper {
     }
   }
 
-  public byte[] getCaptureAsBytes() throws IOException {
+  public byte[] getContentAsBytes() throws IOException {
     if (writer != null) {
       writer.close();
     } else if (output != null) {
@@ -89,8 +89,8 @@ public class HideUserGradeResponseWrapper extends HttpServletResponseWrapper {
     return capture.toByteArray();
   }
 
-  public String getCaptureAsString() throws IOException {
-    return new String(getCaptureAsBytes(), getCharacterEncoding());
+  public String getContentAsString() throws IOException {
+    return new String(getContentAsBytes(), getCharacterEncoding());
   }
 
 }

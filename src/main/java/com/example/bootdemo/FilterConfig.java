@@ -10,7 +10,7 @@ public class FilterConfig {
   public FilterRegistrationBean<HideUserGradeFilter> replaceHtmlFilter() {
     FilterRegistrationBean<HideUserGradeFilter> filterRegistrationBean = new FilterRegistrationBean<>();
     filterRegistrationBean.setFilter(new HideUserGradeFilter());
-    filterRegistrationBean.addUrlPatterns("/UI/users/*");
+    filterRegistrationBean.addUrlPatterns("/ui/users/*");
     return filterRegistrationBean;
   }
 }
