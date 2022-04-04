@@ -38,12 +38,20 @@ class HideUserGradeFilterTest {
   static void beforeAll() {
     log.debug("Before all test methods");
     log.debug("Before each test method");
-    User user = User.builder()
+    User createUser = User.builder()
         .name("박우용")
         .gradeCode("C001")
         .gradeName("현장관리자")
         .age(10000)
         .build();
+    User user = User.builder()
+        .name("박우용")
+        .gradeCode("C001")
+        .gradeName("현장관리자")
+        .age(10000)
+        .createUser(createUser)
+        .build();
+
     Gson gson = new Gson();
     json = gson.toJson(user);
   }
@@ -65,7 +73,6 @@ class HideUserGradeFilterTest {
 
   @DisplayName("직급 정보가 마스킹하여 반환한다.")
   @Test
-  @Disabled
   void replaceGradeTest() {
     // given
 

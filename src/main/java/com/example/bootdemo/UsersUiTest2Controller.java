@@ -6,23 +6,24 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class UsersController {
+public class UsersUiTest2Controller {
   final UserService service;
 
-  public UsersController(UserService service) {
+  public UsersUiTest2Controller(UserService service) {
     this.service = service;
   }
 
-  @GetMapping(value = "/users")
+  @GetMapping(value = "/ui/test2/users")
   public List<User> users() {
     return service.getUsers();
   }
-  @GetMapping(value = "/users/100")
+
+  @GetMapping(value = "/ui/test2/users/100")
   public User users100() {
     return service.getUserById(100L);
   }
 
-  @GetMapping(value = "/users/200")
+  @GetMapping(value = "/ui/test2/users/200")
   public User users200() {
     return service.getUserById(200L);
   }

@@ -12,4 +12,5 @@ public class User {
   private String gradeCode;
   private String gradeName;
   private int age;
+  private User createUser;
 }
